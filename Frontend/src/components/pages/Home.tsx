@@ -82,7 +82,7 @@ const Home=()=>{
                 <hr className="mt-20 border border-gray-400"/>
             </div>
             <span className={ `mt-40 flex justify-center   transition-transform duration-1000  ${ismove ? "transform -translate-x-full" : " transform translate-x-0" } `}>
-            <PhoneInTalkOutlinedIcon fontSize="large"/> <p className="text-2xl flex items-center pl-10 font-semibold  ">+94 76 749 2276</p>
+            <PhoneInTalkOutlinedIcon fontSize="large"/> <a className="text-2xl flex items-center pl-10 font-semibold  " href="tel:+94767492276">+94 76 749 2276</a>
            </span>
            <p className={ `mt-10 pl-10 flex justify-center transition-transform duration-1000 delay-150 ${ismove ? "transform -translate-x-full " : " transform translate-x-0  " } `} > Dewala rd, Mahara-Nugegoda, Kadawatha, Sri Lanka</p>
             <div className="w-full h-[4000px]">
