@@ -1,0 +1,10 @@
+#Frontend (React)
+Frontend/node_modules
+
+
+#backend
+node_modules
+.env
+
+#general
+.Ds_Store

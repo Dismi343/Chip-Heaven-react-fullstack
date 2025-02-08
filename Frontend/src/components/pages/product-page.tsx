@@ -1,0 +1,105 @@
+import { Products } from "../Data/Products"; 
+import { useEffect, useState } from "react";
+
+
+
+function ProductPage(){
+
+    
+        const[isOpen,setIsOpen]=useState(false);
+        const [selectedCategory,setSelectedCategory]=useState<string | null>(null);
+        const categories= Array.from(new Set(Products.map(product => product.category)));
+        const [textVisible,setTextvisible]=useState(false);
+  
+        useEffect(()=>{
+            
+            const textVisible=setTimeout(()=>{
+                setTextvisible(true);
+                return textVisible;
+            },);
+        },[]);
+    
+        const filteredProducts=selectedCategory
+       ? Products.filter(product=>product.category===selectedCategory): Products;
+        
+    
+        useEffect(()=>{
+            const handleMouseMove=(event:MouseEvent)=>{
+                if(event.clientX<300){
+                    setIsOpen(true);
+                }
+                else {
+                    setIsOpen(false);
+                }
+            };
+                document.addEventListener("mousemove",handleMouseMove);
+            return()=>{
+                document.removeEventListener("mousemove",handleMouseMove);
+            };
+        },[]);
+
+    
+    return(
+        <>
+    
+           
+            <div className={`grid grid-cols-3 grid-flow-row gap-20 transform  duration-1000 delay-500 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}>
+                {filteredProducts.map((product) =>(
+                    <div key={product.id} className=" container  font-sans1 gap-3 border border-solid rounded-2xl p-2 w-80 h-96 flex justify-center items-center flex-col shadow-xl  hover:shadow-2xl hover:scale-[1.02] transition-all duration-300  ">
+                    <span className="size-3/5 bg-white rounded-xl p-2">
+                    <img src={product.img} alt={product.title} className="size-[100%]"/>
+                    </span>
+                    <span className="size-2/5 text-center "> 
+                    <h3 className="text-xl font-bold">{product.title}</h3>
+
+                    <p >{product.price}</p>
+                    <p>{product.discription}</p>
+                    <button type="submit" onClick={()=>console.log(product.id)} className=" bg-slate-900 text-white w-[110px] h-8 rounded-full mt-3 hover:bg-red-600 ">Add to Cart </button>
+                    </span>
+
+                    </div>
+                ))}
+               
+            </div>
+            
+    <div className= {`fixed top-0 left-0 inset-0 bg-neutral-800 opacity-50 w-96 transition-all duration-500 ease-in-out transform z-40  ${isOpen ? 'translate-x-0' : '-translate-x-full delay-500 '}`}>
+    </div>
+      
+      <div className={`fixed top-0 left-0 h-full  shadow-lg transition-transform duration-500 delay-300 ease-in-out transform 
+       ${isOpen ? 'translate-x-0' : '-translate-x-full'} w-96 z-40`}>
+        
+       
+        <div className="pt-16 px-4 ">
+          <h2 className={`text-2xl font-bold mb-6 text-gray-800  text-center text-white tranform transition-all duration-500 delay-300 ease-in-out ${isOpen ? 'delay=500  opacity-100 ' : '  opacity-0 delay=500    '}`} >Categories</h2>
+          <hr className="mt-8 mb-6 border border-red-400"/>
+           <div
+              className={`p-4 mt-20 cursor-pointer rounded hover:bg-red-500 mb-1 text-white font-bold ${selectedCategory===null ? 'bg-red-500 text-white':''} tranform transition-all ease-in-out ${isOpen ? '  opacity-100   ' : ' opacity-0  '}`}
+             
+              onClick={() => setSelectedCategory(null)}                                                 
+              >
+                All Products
+            </div>
+
+            {categories.map((category)=>(
+                <div
+                key={category}
+                className={`p-4 cursor-pointer rounded text-white tranform transition-all  ease-in-out  ${isOpen ? '  opacity-100  ' : ' opacity-0  '}
+                    ${selectedCategory === category ? 'bg-red-500  text-white':''} `}
+                    
+                onClick={()=>setSelectedCategory(category)}
+                >
+                        {category}
+                </div>
+            ))}
+            </div>
+
+            </div>
+
+       
+
+
+        </>
+    );
+};
+
+export default ProductPage;
