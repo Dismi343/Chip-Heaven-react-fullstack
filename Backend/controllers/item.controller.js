@@ -46,12 +46,15 @@ export const postitem= async (req,res)=>{
     export const deleteitem=async(req,res)=>{
      
              const{id}= req.params;
-     
+             if(!mongoose.Types.ObjectId.isValid(id)){
+                return res.status(404).json({success:false, message:"Item not available"});
+            }
              try{
                  await Item.findByIdAndDelete(id);
                  res.status(200).json({success:true, message:"Product deleted succefully"});
+               
              }
              catch(error){
-                 res.status(400).json({success:false,message: error});
+                 res.status(500).json({success:false,message: error});
              }
      };

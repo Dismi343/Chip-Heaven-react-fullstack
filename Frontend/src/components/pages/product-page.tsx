@@ -47,7 +47,7 @@ function ProductPage(){
                 {filteredProducts.map((product) =>(
                     <div key={product.id} className=" container  font-sans1 gap-3 border border-solid rounded-2xl p-2 w-80 h-96 flex justify-center items-center flex-col shadow-xl  hover:shadow-2xl hover:scale-[1.02] transition-all duration-300  ">
                     <span className="size-3/5 bg-white rounded-xl p-2">
-                    <img src={product.img} alt={product.title} className="size-[100%]"/>
+                    <img src={product.img} alt={product.title} className="size-[100%]" loading="lazy"/>
                     </span>
                     <span className="size-2/5 text-center "> 
                     <h3 className="text-xl font-bold">{product.title}</h3>
