@@ -28,6 +28,10 @@ const itemschema= new mongoose.Schema({
     subcategories:{
         type:[String],
         required:true
+    },
+    stock:{
+        type:Number,
+        required:true
     }
 });
 

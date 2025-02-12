@@ -44,7 +44,7 @@ export const Products: Product[] =[
         title:"4th Gen i3",
         price:3200,
         discription: "cxvv",
-        category:"Processor",
+        category:"Processor 3rd Gen",
         img:ddr44,
         subcategories:['DDR3','4GB']
     },
@@ -53,7 +53,7 @@ export const Products: Product[] =[
         title:"3rd Gen i3",
         price:3200,
         discription: "cxvv",
-        category:"Processor",
+        category:"Processor 4th Gen",
         img:ddr44,
         subcategories:['DDR3','4GB']
     },

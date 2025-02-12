@@ -3,7 +3,7 @@ import Item from "../models/item.model.js";
 
 export const postitem= async (req,res)=>{
     const item =req.body;
- if(!item.itemid || !item.title||!item.price || !item.discription || !item.category ){
+ if(!item.itemid || !item.title||!item.price || !item.discription || !item.category ||!item.stock || !item.img || !item.subcategories){
      return res.status(400).json({success:false, message:"please provide all feilds"})
  }
  const newItem= new Item(item);

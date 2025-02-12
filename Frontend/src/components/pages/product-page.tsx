@@ -25,7 +25,8 @@ function ProductPage(){
     
         useEffect(()=>{
             const handleMouseMove=(event:MouseEvent)=>{
-                if(event.clientX<300){
+             
+                if(event.clientX<300 && event.clientY>100){
                     setIsOpen(true);
                 }
                 else {
@@ -38,7 +39,7 @@ function ProductPage(){
             };
         },[]);
 
-    
+
     return(
         <>
     
