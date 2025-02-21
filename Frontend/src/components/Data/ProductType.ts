@@ -1,5 +1,6 @@
-export interface Product{
-    id:number,
+export interface Item{
+    //_id: Key | null | undefined;
+    itemid:number,
     title:string,
     price:number,
     discription: string,

@@ -23,5 +23,34 @@ export const useItemStore = create((set)=>({
             const res=  await fetch("/api/items");
             const data= await res.json();
             set({items:data.data});
+           },
+           deleItem:async(itemid)=>{
+            const res=await fetch(`/api/items/${itemid}`,{
+                method:"DELETE",
+            });
+            const data=await res.json();
+            if(!data.success){
+                return {success:false,message:data.message};
+            }
+           set((state)=>({items: state.items.filter((item)=>item._id!==itemid)}));
+            return {success:true,message:'Product deleted successfully'};
+           },
+           updateItem:async(itemid,updatedItem)=>{
+            const res=  await fetch(`/api/items/${itemid}`,{
+                method:"PUT",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body: JSON.stringify(updatedItem)
+            });
+            const data= await res.json();
+            
+            if(!data.success){
+                return {success:false,message:data.message};
+            }
+            set(state=>({
+                items: state.items.map((stock) => stock._id=== itemid ? data.data : stock)
+            }));
            }
-}))
+
+}));

@@ -1,7 +1,7 @@
 
 import { useState,useEffect } from "react";
 import NavBar from "../navigation/navBar";
-import Productpage from "./product-page";
+import ProductList from "./productList";
 import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
 
 
@@ -53,7 +53,7 @@ const Home=()=>{
            
         <div className="flex ">
         
-            <div className={` w-full h-96 bg-bgimg w-full bg-cover bg-center bg-no-repeat items-center justify-center flex fixed top-0 left-0 
+            <div className={` w-full h-96 bg-fixed bg-bgimg w-full  bg-cover bg-center bg-no-repeat items-center justify-center flex fixed top-0 left-0 
                 transition-transform duration-500   z-30 ${isVisible ? "transform translate-y-0 " : "transform -translate-y-full" }  `}>
                <div className="absolute inset-0 bg-black bg-opacity-20"></div>
                 <div className="flex flex-col items-center justify-center"> 
@@ -77,7 +77,7 @@ const Home=()=>{
                         </p>
                     </div>
 
-                <Productpage /> 
+                <ProductList /> 
                 </div>
                 <hr className="mt-20 border border-gray-400"/>
             </div>

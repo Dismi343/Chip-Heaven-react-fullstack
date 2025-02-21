@@ -1,10 +1,10 @@
 import ddr34 from "../../assets/prodcutimg/DDR3 4gb.jpeg";
-import { Product } from "./ProductType";
+import { Item } from "./ProductType";
 import ddr44 from "../../assets/prodcutimg/DDR44.jpg";
 
-export const Products: Product[] =[
+export const Products: Item[] =[
     {
-        id:1,
+        itemid:1,
         title:"DDR3 4GB",
         price:1400,
         discription: "cxvv",
@@ -13,7 +13,7 @@ export const Products: Product[] =[
         subcategories:["DDR3","4GB"]
     },
     {
-        id:2,
+        itemid:2,
         title:"DDR4 4GB",
         price:3200,
         discription: "cxvv",
@@ -22,7 +22,7 @@ export const Products: Product[] =[
         subcategories:['DDR3','8GB']
     },
     {
-        id:3,
+        itemid:3,
         title:"DDR4 8GB",
         price:3200,
         discription: "cxvv",
@@ -31,7 +31,7 @@ export const Products: Product[] =[
         subcategories:['DDR3','4GB']
     },
     {
-        id:4,
+        itemid:4,
         title:"DDR3 8GB",
         price:3200,
         discription: "cxvv",
@@ -40,7 +40,7 @@ export const Products: Product[] =[
         subcategories:['DDR3','4GB']
     },
     {
-        id:5,
+        itemid:5,
         title:"4th Gen i3",
         price:3200,
         discription: "cxvv",
@@ -49,7 +49,7 @@ export const Products: Product[] =[
         subcategories:['DDR3','4GB']
     },
     {
-        id:6,
+        itemid:6,
         title:"3rd Gen i3",
         price:3200,
         discription: "cxvv",
@@ -58,3 +58,5 @@ export const Products: Product[] =[
         subcategories:['DDR3','4GB']
     },
 ]
+
+

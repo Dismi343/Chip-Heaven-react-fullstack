@@ -1,16 +1,45 @@
-import { Products } from "../Data/Products"; 
+import { Item } from "../Data/ProductType"; 
 import { useEffect, useState } from "react";
+import {fetchItems} from "../Utils/api";
+
+//import { ListItem } from "@mui/material";
 
 
 
-function ProductPage(){
+const ProductList: React.FC = () => {
 
     
+       const [items, setItems] = useState<Item[]>([])    
         const[isOpen,setIsOpen]=useState(false);
         const [selectedCategory,setSelectedCategory]=useState<string | null>(null);
-        const categories= Array.from(new Set(Products.map(product => product.category)));
+        const categories= Array.from(new Set(items.map(item => item.category)));
         const [textVisible,setTextvisible]=useState(false);
+        const [loading, setLoading] = useState(true);
+        const [error, setError] = useState<string | null>(null);
   
+
+        useEffect(()=>{
+            const loadItem = async ()=>{
+                try{
+                   
+                    const data = await fetchItems();
+                    setItems(data);
+                    setLoading(true);
+                    console.log(data);
+                  
+                } catch (error){ 
+                    setError("Failed to fetch data");
+                    setLoading(false);
+                    console.error(error);
+                }
+            };
+            loadItem();
+        },[]);
+
+      
+        
+            console.log(items);
+
         useEffect(()=>{
             
             const textVisible=setTimeout(()=>{
@@ -20,7 +49,7 @@ function ProductPage(){
         },[]);
     
         const filteredProducts=selectedCategory
-       ? Products.filter(product=>product.category===selectedCategory): Products;
+       ? items.filter(product=>product.category===selectedCategory):items;
         
     
         useEffect(()=>{
@@ -39,6 +68,10 @@ function ProductPage(){
             };
         },[]);
 
+
+
+        if(loading) return <div>Loading...</div>;
+        if(error) return <div>ErrorL{error}</div>;
 
     return(
         <>
@@ -104,4 +137,4 @@ function ProductPage(){
     );
 };
 
-export default ProductPage;
+export default ProductList;
