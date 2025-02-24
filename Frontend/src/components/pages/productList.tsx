@@ -14,7 +14,6 @@ const ProductList: React.FC = () => {
         const [selectedCategory,setSelectedCategory]=useState<string | null>(null);
         const categories= Array.from(new Set(items.map(item => item.category)));
         const [textVisible,setTextvisible]=useState(false);
-        const [loading, setLoading] = useState(true);
         const [error, setError] = useState<string | null>(null);
   
 
@@ -23,22 +22,17 @@ const ProductList: React.FC = () => {
                 try{
                    
                     const data = await fetchItems();
-                    setItems(data);
-                    setLoading(true);
-                    console.log(data);
+                    setItems(Array.isArray(data) ? data : Object.values(data.data));
+                    console.log(items);
                   
                 } catch (error){ 
                     setError("Failed to fetch data");
-                    setLoading(false);
                     console.error(error);
                 }
             };
             loadItem();
         },[]);
-
-      
-        
-            console.log(items);
+           
 
         useEffect(()=>{
             
@@ -70,8 +64,7 @@ const ProductList: React.FC = () => {
 
 
 
-        if(loading) return <div>Loading...</div>;
-        if(error) return <div>ErrorL{error}</div>;
+        
 
     return(
         <>
