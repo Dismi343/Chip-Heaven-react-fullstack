@@ -1,6 +1,6 @@
-import { Item } from "../Data/ProductType"; 
 import { useEffect, useState } from "react";
 import {fetchItems} from "../Utils/api";
+import { Item } from "../Data/ProductType";
 
 //import { ListItem } from "@mui/material";
 
@@ -14,6 +14,7 @@ const ProductList: React.FC = () => {
         const [selectedCategory,setSelectedCategory]=useState<string | null>(null);
         const categories= Array.from(new Set(items.map(item => item.category)));
         const [textVisible,setTextvisible]=useState(false);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const [error, setError] = useState<string | null>(null);
   
 
@@ -23,7 +24,7 @@ const ProductList: React.FC = () => {
                    
                     const data = await fetchItems();
                     setItems(Array.isArray(data) ? data : Object.values(data.data));
-                    console.log(items);
+                  // console.log(items);
                   
                 } catch (error){ 
                     setError("Failed to fetch data");
@@ -70,18 +71,18 @@ const ProductList: React.FC = () => {
         <>
     
            
-            <div className={`grid grid-cols-3 grid-flow-row gap-20 transform  duration-1000 delay-500 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}>
+            <div className={`flex justify-center grid sm:grid-cols-2 lg:grid-cols-3 grid-flow-row gap-20 transform  duration-1000 delay-500 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}>
                 {filteredProducts.map((product) =>(
                     <div key={product.itemid} className=" container  font-sans1 gap-3 border border-solid rounded-2xl p-2 w-80 h-96 flex justify-center items-center flex-col shadow-xl  hover:shadow-2xl hover:scale-[1.02] transition-all duration-300  ">
                     <span className="size-3/5 bg-white rounded-xl p-2">
-                    <img src={product.img} alt={product.title} className="size-[100%]" loading="lazy"/>
+                    <img src={product.img} alt={product.title} className="size-[100%] " loading="lazy"/>
                     </span>
                     <span className="size-2/5 text-center "> 
-                    <h3 className="text-xl font-bold">{product.title}</h3>
+                    <h3 className="md:text-xl font-bold">{product.title}</h3>
 
                     <p >{product.price}</p>
                     <p>{product.discription}</p>
-                    <button type="submit" onClick={()=>console.log(product.itemid)} className=" bg-slate-900 text-white w-[110px] h-8 rounded-full mt-3 hover:bg-cyan-900 ">Add to Cart </button>
+                    <button type="submit" onClick={()=>console.log(product.itemid)} className=" bg-slate-900 text-white w-[110px] md:h-8 rounded-full mt-3 hover:bg-cyan-900 sm:text-md text-sm-sm">Add to Cart </button>
                     </span>
 
                     </div>
@@ -89,10 +90,10 @@ const ProductList: React.FC = () => {
                
             </div>
             
-    <div className= {`fixed top-0 left-0 inset-0 bg-neutral-800 opacity-50 w-96 transition-all duration-500 ease-in-out transform z-40  ${isOpen ? 'translate-x-0' : '-translate-x-full delay-500 '}`}>
+    <div className= {`hidden md:block fixed top-0 left-0 inset-0 bg-neutral-800 opacity-50 md:w-96 transition-all duration-500 ease-in-out transform z-40  ${isOpen ? 'translate-x-0' : '-translate-x-full delay-500 '}`}>
     </div>
       
-      <div className={`fixed top-0 left-0 h-full  shadow-lg transition-transform duration-500 delay-300 ease-in-out transform 
+      <div className={`hidden md:block fixed top-0 left-0 h-full  shadow-lg transition-transform duration-500 delay-300 ease-in-out transform 
        ${isOpen ? 'translate-x-0' : '-translate-x-full'} w-96 z-40`}>
         
        

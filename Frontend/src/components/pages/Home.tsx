@@ -50,15 +50,18 @@ const Home=()=>{
     scroll();
     return (
         <>
+     
+
            
         <div className="flex ">
         
             <div className={` w-full h-96 bg-fixed bg-bgimg w-full  bg-cover bg-center bg-no-repeat items-center justify-center flex fixed top-0 left-0 
-                transition-transform duration-500   z-30 ${isVisible ? "transform translate-y-0 " : "transform -translate-y-full" }  `}>
+                transition-transform duration-500 z-30  ${isVisible ? "transform translate-y-0 " : "transform -translate-y-full" }  `}>
                <div className="absolute inset-0 bg-black bg-opacity-20"></div>
                 <div className="flex flex-col items-center justify-center"> 
-                <div className={`w-[400px] h-[400px] bg-logo transform transition-all duration-1000 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}></div>  
-                <NavBar  /> 
+                <div className={` md:w-[400px] md:h-[400px] w-[200px] h-[200px] bg-logo transform transition-all duration-1000 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}></div>  
+                <NavBar   /> 
+               
                 </div>  
                   
             </div>
@@ -66,7 +69,7 @@ const Home=()=>{
         </div>
         {/* <div className="w-full h-[400px]"></div> */}
        
-            <div className={`w-full mt-[475px]  `}>
+            <div className={`w-full mt-[450px]  `}>
                 <div className={`justify-center w-full h-full mt-10 grid grid-rows-1 `}  >
                     <div className={`flex justify-center items-center flex-col mb-20 pl-10  transform transition-all duration-1000 delay-300 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                         <p className="font-sans font-medium subpixel-antialiased text-xl tracking-normal mb-5 ">
@@ -76,17 +79,21 @@ const Home=()=>{
                         Find the latest computer accessories, and repair services all in one place.
                         </p>
                     </div>
-
-                <ProductList /> 
+                    <div className=" w-full h-full ">
+                    <ProductList /> 
+                    </div>
+               
                 </div>
                 <hr className="mt-20 border border-gray-400"/>
             </div>
-            <span className={ `mt-40 flex justify-center   transition-transform duration-1000  ${ismove ? "transform -translate-x-full" : " transform translate-x-0" } `}>
+            <span className={ `mt-40 flex justify-center transition-transform duration-1000  ${ismove ? "transform -translate-x-full" : " transform translate-x-0" } `}>
             <PhoneInTalkOutlinedIcon fontSize="large"/> <a className="text-2xl flex items-center pl-10 font-semibold  " href="tel:+94767492276">+94 76 749 2276</a>
            </span>
-           <p className={ `mt-10 pl-10 flex justify-center transition-transform duration-1000 delay-150 ${ismove ? "transform -translate-x-full " : " transform translate-x-0  " } `} > Dewala rd, Mahara-Nugegoda, Kadawatha, Sri Lanka</p>
+           <p className={ `mt-10 pl-10 flex justify-center px-3 transition-transform duration-1000 delay-150 ${ismove ? "transform -translate-x-full " : " transform translate-x-0  " } `} > Dewala rd, Mahara-Nugegoda, Kadawatha, Sri Lanka</p>
             <div className="w-full h-[4000px]">
             </div>
+
+           
         </>
     );
 };

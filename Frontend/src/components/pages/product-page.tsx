@@ -44,7 +44,7 @@ function ProductPage(){
         <>
     
            
-            <div className={`grid grid-cols-3 grid-flow-row gap-20 transform  duration-1000 delay-500 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}>
+            <div className={`grid  grid-cols-3 grid-flow-row gap-20 transform  duration-1000 delay-500 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}>
                 {filteredProducts.map((product) =>(
                     <div key={product.itemid} className=" container  font-sans1 gap-3 border border-solid rounded-2xl p-2 w-80 h-96 flex justify-center items-center flex-col shadow-xl  hover:shadow-2xl hover:scale-[1.02] transition-all duration-300  ">
                     <span className="size-3/5 bg-white rounded-xl p-2">
