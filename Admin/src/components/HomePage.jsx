@@ -4,13 +4,15 @@ import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRou
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
 import  { useEffect, useState } from 'react';
 import logo from '../assets/logo.png';
-
-//import ddr4 from '../assets/DDR3 4gb.jpeg';
 import { useItemStore } from '../store/item';
+//import ddr4 from '../assets/DDR3 4gb.jpeg';
+
 //import { set } from 'mongoose';
 
 
 const HomePage=()=>{
+
+       
       const [formData, setFormData] = useState({
             itemid: '',
             title: '',
@@ -28,8 +30,6 @@ const HomePage=()=>{
     useEffect(() => {
           fetchItems();
     },[fetchItems]);
-    
-    //console.log('Items',items);
 
     const deleteProduct = async (itemid) => {
       const { success,message } = await deleItem(itemid);
@@ -49,19 +49,11 @@ const HomePage=()=>{
       const { success, message } = await createItem(formData);
       console.log("Success",success);  
       console.log("Message",message);
-      setFormData({title:"",itemid:"",price:"",stock:"",category:"",img:"",discription:'',subcategories:[],ram:"",Stock:"",Ram:""});
+      setFormData({title:"",itemid:"",price:"",stock:"",category:"",img:"",discription:'',subcategories:[],ram:"",Stock:"",Ram:""})
+
       };
 
-      const handleImage = async(e)=>{
-        const file= e.target.files[0];
-      const base64= await ConverttoBase64(file);
-      console.log(base64);
-      setFormData({...formData,img:base64});
-      }
-          
-      // const calculateTotalValue = () => {
-      //   return products.reduce((sum, product) => sum + (product.price * product.stock), 0);
-      // };
+     
 
     return(
         <>
@@ -172,7 +164,7 @@ const HomePage=()=>{
                         name="img"
                         accept=".jpeg,.jpg,.png"
                         id="img"
-                        onChange={(e)=>handleImage(e)}
+                        onChange={(e)=>setFormData({...formData,img:e.target.value})}
                         className="w-full p-2 border rounded"
                         required
                       />
@@ -272,23 +264,5 @@ const HomePage=()=>{
         </>
     );
 }
-// HomePage.propTypes = {
-//   item: PropTypes.shape({
-//     stock: PropTypes.number.isRequired,
-//   }).isRequired,
-// };
 
 export default HomePage;
-
-function ConverttoBase64(file){
-  return new Promise((resolve,reject)=>{
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload =()=>{
-      resolve(fileReader.result);
-    };
-    fileReader.onerror = (error) =>{
-      reject(error);
-    }
-  })
-}

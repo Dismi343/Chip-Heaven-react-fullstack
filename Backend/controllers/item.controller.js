@@ -3,9 +3,12 @@ import Item from "../models/item.model.js";
 
 export const postitem= async (req,res)=>{
     const item =req.body;
+    const file=req.files;
+   // const fileName="image/"+v4();
  if(!item.itemid || !item.title||!item.price || !item.discription || !item.category ||!item.stock || !item.img || !item.subcategories){
      return res.status(400).json({success:false, message:"please provide all feilds"})
  }
+
  const newItem= new Item(item);
  try{
      await newItem.save();
@@ -16,6 +19,7 @@ export const postitem= async (req,res)=>{
      res.status(500).json({success:false ,message:"server error"});
  }
  };
+
 
  export const getitem= async (req,res)=>{
      try {
@@ -30,6 +34,10 @@ export const postitem= async (req,res)=>{
   export const putitem=async(req,res)=>{
     const {id}=req.params;
     const item=req.body;
+    const {file}=req.files;
+
+
+
 
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({success:false, message:"invalide data"});
