@@ -68,12 +68,7 @@ const HomePage=()=>{
 
       };
 
-      const handleImage = async(e)=>{
-        const file= e.target.files[0];
-      const base64= await ConverttoBase64(file);
-      console.log(base64);
-      setFormData({...formData,img:base64});
-      }
+    
           
       // const calculateTotalValue = () => {
       //   return products.reduce((sum, product) => sum + (product.price * product.stock), 0);
@@ -188,7 +183,7 @@ const HomePage=()=>{
                         name="img"
                         accept=".jpeg,.jpg,.png"
                         id="img"
-                        onChange={(e)=>handleImage(e)}
+                        onChange={(e)=>setFormData({...formData,img:e.target.files[0]})}
                         className="w-full p-2 border rounded"
                         required
                       />
@@ -291,15 +286,3 @@ const HomePage=()=>{
 
 export default HomePage;
 
-function ConverttoBase64(file){
-  return new Promise((resolve,reject)=>{
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload =()=>{
-      resolve(fileReader.result);
-    };
-    fileReader.onerror = (error) =>{
-      reject(error);
-    }
-  })
-}
