@@ -24,6 +24,8 @@ const HomePage=()=>{
             subcategories: []
       });
 
+      const [selectedFile, setSelectedFile] = useState(null);
+
       
    
     const {fetchItems,items,createItem,deleItem,updateItem} = useItemStore();
@@ -46,24 +48,37 @@ const HomePage=()=>{
       }
    };
  
-
+const handleCheckboxChange = (e) => {
+  const { value, checked } = e.target;
+  setFormData((prev) => ({
+    ...prev,
+    subcategories: checked 
+      ? [...prev.subcategories, value]  // Add value
+      : prev.subcategories.filter((v) => v !== value) // Remove value
+  }));
+};
 
       const handleSubmit = async(e) => {
       e.preventDefault();
-      // const formDataObj = new FormData();
-      // formDataObj.append("itemid", formData.itemid);
-      // formDataObj.append("title", formData.title);
-      // formDataObj.append("img", formData.img); // File input
-      // formDataObj.append("discription", formData.discription);
-      // formDataObj.append("category", formData.category);
-      // formDataObj.append("price", formData.price);
-      // formDataObj.append("stock", formData.stock);
-      // formDataObj.append("subcategories", JSON.stringify(formData.subcategories));
+      const formDataObj = new FormData();
+      formDataObj.append("itemid", formData.itemid.toString());
+      formDataObj.append("title", formData.title);
+      formDataObj.append("img", selectedFile.name); // File input
+      formDataObj.append("discription", formData.discription);
+      formDataObj.append("category", formData.category);
+      formDataObj.append("price", formData.price.toString());
+      formDataObj.append("stock", formData.stock.toString());
+      formDataObj.append("subcategories", formData.subcategories.length > 0 ? JSON.stringify(formData.subcategories) : "[]");
     
-      const { success, message } = await createItem(formData);
-      console.log(formData.img);
-      console.log("Success",success);  
-      console.log("Message",message);
+      try {
+        const { success, message } = await createItem(formDataObj);
+        console.log("Form Data:", formDataObj);
+        console.log("File:", selectedFile.name);
+        console.log("Success:", success);
+        console.log("Message:", message);
+      } catch (error) {
+        console.error("Error submitting form:", error);
+      }
       setFormData({title:"",itemid:"",price:"",stock:"",category:"",img:"",discription:'',subcategories:[],ram:"",Stock:"",Ram:""})
 
       };
@@ -108,7 +123,7 @@ const HomePage=()=>{
                 <tbody>
                 {items.map(item => (
                     <tr key={item._id} className="border-b hover:bg-gray-50 ">
-                      <td className="p-2">{item.itemid}</td>
+                      <td className="p-2">{item?.itemid || "N/A"}</td>
                       <td className="p-2">{item.title}</td>
                       <td className="p-2"><img src={item.img} alt={item.title}/></td>
                       <td className="p-2">{item.category}</td>
@@ -152,7 +167,7 @@ const HomePage=()=>{
           </div>
         </div>
         <div className='max-w-4xl mx-auto mt-40 mb-40 '>
-              <form  className="grid  grid-flow-col grid-rows-9 gap-4">
+              <form  className="grid  grid-flow-col grid-rows-9 gap-4" onSubmit={handleSubmit} encType="multipart/form-data">
               <div>
                       <label className="block text-sm font-medium mb-1">Product Id</label>
                       <input
@@ -183,7 +198,7 @@ const HomePage=()=>{
                         name="img"
                         accept=".jpeg,.jpg,.png"
                         id="img"
-                        onChange={(e)=>setFormData({...formData,img:e.target.files[0]})}
+                        onChange={(e)=>setSelectedFile(e.target.files[0])}
                         className="w-full p-2 border rounded"
                         required
                       />
@@ -198,7 +213,7 @@ const HomePage=()=>{
                         className="w-full p-2 border rounded"
                         required
                       >
-                       <option value="" name="ram" disabled selected hidden >Select a Category </option>
+                       <option value="" name="ram" disabled  hidden >Select a Category </option>
                         <option value="DDR4 RAM">DDR4 RAM</option>
                         <option value="DDR3 RAM">DDR3 RAM</option>
                         <option value="Processor 3rd gen">Processor 3rd gen</option>
@@ -237,19 +252,19 @@ const HomePage=()=>{
                         <label className="block text-sm font-medium mb-1">Subcategories</label>
                         <div className='flex flex-row gap-4 justify-evenly '>  
                           <label >
-                            <input type="checkbox" name="Ram" value="4gb" onChange={(e)=>setFormData({...formData,subcategories:e.target.value})}  />
+                            <input type="checkbox" name="Ram" value="4gb" onChange={handleCheckboxChange} checked={formData.subcategories.includes("4gb")}  />
                             4GB
                           </label>
                           <label >
-                            <input type="checkbox" name="Ram" value="8gb" onChange={(e)=>setFormData({...formData,subcategories:e.target.value})} />
+                            <input type="checkbox" name="Ram" value="8gb" onChange={handleCheckboxChange} checked={formData.subcategories.includes("8gb")} />
                             8GB
                           </label>
                           <label >
-                            <input type="checkbox" name="Ram" value="i3" onChange={(e)=>setFormData({...formData,subcategories:e.target.value})}/>
+                            <input type="checkbox" name="Ram" value="i3" onChange={handleCheckboxChange} checked={formData.subcategories.includes("i3")}/>
                             i3
                           </label>
                           <label >
-                            <input type="checkbox" name="Ram" value="i4" onChange={(e)=>setFormData({...formData,subcategories:e.target.value})}/>
+                            <input type="checkbox" name="Ram" value="i4" onChange={handleCheckboxChange} checked={formData.subcategories.includes("i4")}/>
                             i4
                           </label>
                         </div>
@@ -273,7 +288,7 @@ const HomePage=()=>{
                     <button
                       type="submit"
                       className="block bg-gray-800 text-white rounded hover:bg-gray-900 "
-                      onClick={handleSubmit}
+                      
                     >Add Product
                     </button>
                   </form>

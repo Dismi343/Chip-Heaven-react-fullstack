@@ -19,6 +19,7 @@ export const useItemStore = create((set)=>({
             formData.append('subcategories', newItem.subcategories);
             console.log(formData);
             console.log(newItem.title);
+            
     
             // Ensure the file is included
             if (file) {
