@@ -5,51 +5,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { putObject } from "../util/putObject.js";
 
 export const postitem= async (req,res)=>{
-   // const item =req.body;
-    const {itemid, title, price, discription, category, stock, subcategories}= req.body;
-    const file= req.files;
-    const fileName = "/"+uuidv4();
-    if(!req.files || !req.files.img){
-        return res.status(400).json({success:false, message:"please provide all feilds"})
-    }
-
-
-
- //let url,key;
-// object cloud upload
-console.log('Received body:', req.body);
-console.log('Received file:', req.files);
-const {url,key} = await putObject(file,fileName);
-
-const s3Response = await s3.upload(params).promise();
-const imgurl = s3Response.Location;
-
-//  
-
-
-if(!imgurl ){
-    return res.status(400).json({
-        sucess:false,
-        message:"Image is not uploaded"
-    });
-}
-
-//  const newItem= new Item(item);
-
-const CreateNewItem= 
-{
-    itemid: req.body.itemid,
-    title: req.body.title,
-    price: req.body.price,
-    description: req.body.discription,
-    category: req.body.category,
-    stock: req.body.stock,
-    subcategories: req.body.subcategories,
-    imgurl,  // Store the URL of the image
-};
-
-const newItem=await Item.create(CreateNewItem);
-
+    const item =req.body;
+ if(!item.itemid || !item.title||!item.price || !item.discription || !item.category ||!item.stock || !item.img || !item.subcategories){
+     return res.status(400).json({success:false, message:"please provide all feilds"})
+ }
+ const newItem= new Item(item);
  try{
      await newItem.save();
      res.status(201).json({success:true, data:newItem});
@@ -59,6 +19,7 @@ const newItem=await Item.create(CreateNewItem);
      res.status(500).json({success:false ,message:"server error"});
  }
  };
+
 
  export const getitem= async (req,res)=>{
      try {
@@ -73,9 +34,6 @@ const newItem=await Item.create(CreateNewItem);
   export const putitem=async(req,res)=>{
     const {id}=req.params;
     const item=req.body;
-    const {file}= req.files;
-
-    
 
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({success:false, message:"invalide data"});
