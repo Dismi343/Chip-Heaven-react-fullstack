@@ -22,6 +22,7 @@ const HomePage=()=>{
             subcategories: []
       });
 
+      
    
     const {fetchItems,items,createItem,deleItem,updateItem} = useItemStore();
 
@@ -39,25 +40,34 @@ const HomePage=()=>{
      };
 
    const handleproduct = async (itemid,updatedItem) => {
-      updateItem(itemid,updatedItem);
+      const {success,message} = await updateItem(itemid,updatedItem);
+      if(!success){
+          console.log("Error",message);
+      }
    };
  
 
 
       const handleSubmit = async(e) => {
       e.preventDefault();
+      // const formDataObj = new FormData();
+      // formDataObj.append("itemid", formData.itemid);
+      // formDataObj.append("title", formData.title);
+      // formDataObj.append("img", formData.img); // File input
+      // formDataObj.append("discription", formData.discription);
+      // formDataObj.append("category", formData.category);
+      // formDataObj.append("price", formData.price);
+      // formDataObj.append("stock", formData.stock);
+      // formDataObj.append("subcategories", JSON.stringify(formData.subcategories));
+    
       const { success, message } = await createItem(formData);
+      console.log(formData.img);
       console.log("Success",success);  
       console.log("Message",message);
       setFormData({title:"",itemid:"",price:"",stock:"",category:"",img:"",discription:'',subcategories:[],ram:"",Stock:"",Ram:""});
       };
 
-      const handleImage = async(e)=>{
-        const file= e.target.files[0];
-      const base64= await ConverttoBase64(file);
-      console.log(base64);
-      setFormData({...formData,img:base64});
-      }
+    
           
       // const calculateTotalValue = () => {
       //   return products.reduce((sum, product) => sum + (product.price * product.stock), 0);
@@ -95,28 +105,28 @@ const HomePage=()=>{
                   </tr>
                 </thead>
                 <tbody>
-                {items.map(items => (
-                    <tr key={items._id} className="border-b hover:bg-gray-50 ">
-                      <td className="p-2">{items.itemid}</td>
-                      <td className="p-2">{items.title}</td>
-                      <td className="p-2"><img src={items.img} alt={items.title}/></td>
-                      <td className="p-2">{items.category}</td>
+                {items.map(item => (
+                    <tr key={item._id} className="border-b hover:bg-gray-50 ">
+                      <td className="p-2">{item.itemid}</td>
+                      <td className="p-2">{item.title}</td>
+                      <td className="p-2"><img src={item.img} alt={item.title}/></td>
+                      <td className="p-2">{item.category}</td>
                       <td className="p-2 text-right">
-                        ${items.price.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                        ${item.price.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                       </td>
                       <td className="m-2 text-right">
 
                             <button
-                              onClick={()=>handleproduct(items._id,{stock:items.stock-1})}
+                              onClick={()=>handleproduct(item._id,{stock:item.stock-1})}
                               className=" text-black hover:text-red-800 pr-2 "
                             >
                               <RemoveCircleOutlineRoundedIcon />  
                             </button>
 
-                               {items.stock}
+                               {item.stock}
 
                             <button
-                              onClick={()=>handleproduct(items._id,{stock:items.stock+1}) }
+                              onClick={()=>handleproduct(item._id,{stock:item.stock+1}) }
                               className=" text-black hover:text-red-800 pl-2 "
                              >
                               <AddCircleOutlineRoundedIcon />
@@ -124,11 +134,11 @@ const HomePage=()=>{
 
                         </td>
                       <td className="p-2 text-right">
-                        ${(items.price * items.stock).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                        ${(item.price * item.stock).toLocaleString('en-US', { minimumFractionDigits: 2 })}
                       </td>
                       <td className="p-2 text-center">
                         <button
-                          onClick={() => deleteProduct(items._id)}
+                          onClick={() => deleteProduct(item._id)}
                           className="text-red-600 hover:text-red-800 "
                         >
                             <RemoveCircleOutlineIcon />
@@ -172,7 +182,7 @@ const HomePage=()=>{
                         name="img"
                         accept=".jpeg,.jpg,.png"
                         id="img"
-                        onChange={(e)=>handleImage(e)}
+                        onChange={(e)=>setFormData({...formData, img: e.target.files[0]})}
                         className="w-full p-2 border rounded"
                         required
                       />
@@ -280,15 +290,3 @@ const HomePage=()=>{
 
 export default HomePage;
 
-function ConverttoBase64(file){
-  return new Promise((resolve,reject)=>{
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload =()=>{
-      resolve(fileReader.result);
-    };
-    fileReader.onerror = (error) =>{
-      reject(error);
-    }
-  })
-}
