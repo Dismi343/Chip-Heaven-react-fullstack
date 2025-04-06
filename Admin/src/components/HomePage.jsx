@@ -63,12 +63,15 @@ const handleCheckboxChange = (e) => {
       const formDataObj = new FormData();
       formDataObj.append("itemid", formData.itemid.toString());
       formDataObj.append("title", formData.title);
-      formDataObj.append("img", selectedFile.name); // File input
+      formDataObj.append("img", selectedFile); // File input
       formDataObj.append("discription", formData.discription);
       formDataObj.append("category", formData.category);
       formDataObj.append("price", formData.price.toString());
       formDataObj.append("stock", formData.stock.toString());
       formDataObj.append("subcategories", formData.subcategories.length > 0 ? JSON.stringify(formData.subcategories) : "[]");
+
+      setSelectedFile(null);
+      document.getElementById('img').value="";
     
       try {
         const { success, message } = await createItem(formDataObj);
@@ -79,7 +82,7 @@ const handleCheckboxChange = (e) => {
       } catch (error) {
         console.error("Error submitting form:", error);
       }
-      setFormData({title:"",itemid:"",price:"",stock:"",category:"",img:"",discription:'',subcategories:[],ram:"",Stock:"",Ram:""})
+      setFormData({title:"",itemid:"",price:"",stock:"",category:"",img:"",discription:'',subcategories:[],ram:""})
 
       };
 
@@ -133,7 +136,7 @@ const handleCheckboxChange = (e) => {
                       <td className="m-2 text-right">
 
                             <button
-                              onClick={()=>handleproduct(item._id,{stock:item.stock-1})}
+                              onClick={async ()=>await handleproduct(item._id,{stock:item.stock-1})}
                               className=" text-black hover:text-red-800 pr-2 "
                             >
                               <RemoveCircleOutlineRoundedIcon />  
@@ -142,7 +145,7 @@ const handleCheckboxChange = (e) => {
                                {item.stock}
 
                             <button
-                              onClick={()=>handleproduct(item._id,{stock:item.stock+1}) }
+                              onClick={async ()=> await handleproduct(item._id,{stock:item.stock+1}) }
                               className=" text-black hover:text-red-800 pl-2 "
                              >
                               <AddCircleOutlineRoundedIcon />
@@ -168,129 +171,129 @@ const handleCheckboxChange = (e) => {
         </div>
         <div className='max-w-4xl mx-auto mt-40 mb-40 '>
               <form  className="grid  grid-flow-col grid-rows-9 gap-4" onSubmit={handleSubmit} encType="multipart/form-data">
-              <div>
-                      <label className="block text-sm font-medium mb-1">Product Id</label>
-                      <input
-                        type="number"
-                        name="id"
-                        value={formData.itemid}
-                        onChange={(e)=>setFormData({...formData,itemid:e.target.value})}
-                        className="w-full p-2 border rounded"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Product Name</label>
-                      <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={(e)=>setFormData({...formData,title:e.target.value})}
-                        className="w-full p-2 border rounded"
-                        required
-                      />
-                    </div>
-                    {/* =============image ===========*/}
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Product Image</label>
-                      <input
-                        type="file"
-                        name="img"
-                        accept=".jpeg,.jpg,.png"
-                        id="img"
-                        onChange={(e)=>setSelectedFile(e.target.files[0])}
-                        className="w-full p-2 border rounded"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Category</label>
-                      <select
-                        name="category"
-                        value={formData.category}
-                        onChange={(e)=>setFormData({...formData,category:e.target.value})}
-                        className="w-full p-2 border rounded"
-                        required
-                      >
-                       <option value="" name="ram" disabled  hidden >Select a Category </option>
-                        <option value="DDR4 RAM">DDR4 RAM</option>
-                        <option value="DDR3 RAM">DDR3 RAM</option>
-                        <option value="Processor 3rd gen">Processor 3rd gen</option>
-                        <option value="Processor 4th gen">Processor 4th gen</option>
-                        <option value="3rd gen i3">3rd gen i3 </option>
-                        <option value="4th gen i3">4th gen i3 </option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Price (Rs)</label>
-                      <input
-                        type="number"
-                        name="price"
-                        value={formData.price}
-                        onChange={(e)=>setFormData({...formData,price:e.target.value})}
-                        step="0.01"
-                        min="0"
-                        className="w-full p-2 border rounded"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-1">discription</label>
-                      <input
-                        type="text"
-                        name="discription"
-                        value={formData.discription}
-                        onChange={(e)=>setFormData({...formData,discription:e.target.value})}
-                        className="w-full p-2 border rounded"
-                        required
-                      />
-                    </div>
-                    
-                    <div >
+                        <div>
+                                <label className="block text-sm font-medium mb-1">Product Id</label>
+                                <input
+                                  type="number"
+                                  name="id"
+                                  value={formData.itemid}
+                                  onChange={(e)=>setFormData({...formData,itemid:e.target.value})}
+                                  className="w-full p-2 border rounded"
+                                  required
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Product Name</label>
+                                <input
+                                  type="text"
+                                  name="title"
+                                  value={formData.title}
+                                  onChange={(e)=>setFormData({...formData,title:e.target.value})}
+                                  className="w-full p-2 border rounded"
+                                  required
+                                />
+                              </div>
+                              {/* =============image ===========*/}
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Product Image</label>
+                                <input
+                                  type="file"
+                                  name="img"
+                                  accept=".jpeg,.jpg,.png"
+                                  id="img"
+                                  onChange={(e)=>setSelectedFile(e.target.files[0])}
+                                  className="w-full p-2 border rounded"
+                                  required
+                                />
+                              </div>
+                              
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Category</label>
+                                <select
+                                  name="category"
+                                  value={formData.category}
+                                  onChange={(e)=>setFormData({...formData,category:e.target.value})}
+                                  className="w-full p-2 border rounded"
+                                  required
+                                >
+                                <option value="" name="ram" disabled  hidden >Select a Category </option>
+                                  <option value="DDR4 RAM">DDR4 RAM</option>
+                                  <option value="DDR3 RAM">DDR3 RAM</option>
+                                  <option value="Processor 3rd gen">Processor 3rd gen</option>
+                                  <option value="Processor 4th gen">Processor 4th gen</option>
+                                  <option value="3rd gen i3">3rd gen i3 </option>
+                                  <option value="4th gen i3">4th gen i3 </option>
+                                </select>
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Price (Rs)</label>
+                                <input
+                                  type="number"
+                                  name="price"
+                                  value={formData.price}
+                                  onChange={(e)=>setFormData({...formData,price:e.target.value})}
+                                  step="0.01"
+                                  min="0"
+                                  className="w-full p-2 border rounded"
+                                  required
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium mb-1">discription</label>
+                                <input
+                                  type="text"
+                                  name="discription"
+                                  value={formData.discription}
+                                  onChange={(e)=>setFormData({...formData,discription:e.target.value})}
+                                  className="w-full p-2 border rounded"
+                                  required
+                                />
+                              </div>
+                              
+                              <div >
 
-                        <label className="block text-sm font-medium mb-1">Subcategories</label>
-                        <div className='flex flex-row gap-4 justify-evenly '>  
-                          <label >
-                            <input type="checkbox" name="Ram" value="4gb" onChange={handleCheckboxChange} checked={formData.subcategories.includes("4gb")}  />
-                            4GB
-                          </label>
-                          <label >
-                            <input type="checkbox" name="Ram" value="8gb" onChange={handleCheckboxChange} checked={formData.subcategories.includes("8gb")} />
-                            8GB
-                          </label>
-                          <label >
-                            <input type="checkbox" name="Ram" value="i3" onChange={handleCheckboxChange} checked={formData.subcategories.includes("i3")}/>
-                            i3
-                          </label>
-                          <label >
-                            <input type="checkbox" name="Ram" value="i4" onChange={handleCheckboxChange} checked={formData.subcategories.includes("i4")}/>
-                            i4
-                          </label>
-                        </div>
-                       
-                        
-                     
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Stock</label>
-                      <input
-                        type="number"
-                        name="stock"
-                        value={formData.stock}
-                        onChange={(e)=>setFormData({...formData,stock:e.target.value})}
-                        min="0"
-                        className="w-full p-2 border rounded"
-                        required
-                      />
-                    </div>
-                    
-                    <button
-                      type="submit"
-                      className="block bg-gray-800 text-white rounded hover:bg-gray-900 "
-                      
-                    >Add Product
-                    </button>
+                                  <label className="block text-sm font-medium mb-1">Subcategories</label>
+                                  <div className='flex flex-row gap-4 justify-evenly '>  
+                                    <label >
+                                      <input type="checkbox" name="Ram" value="4gb" onChange={handleCheckboxChange} checked={formData.subcategories.includes("4gb")}  />
+                                      4GB
+                                    </label>
+                                    <label >
+                                      <input type="checkbox" name="Ram" value="8gb" onChange={handleCheckboxChange} checked={formData.subcategories.includes("8gb")} />
+                                      8GB
+                                    </label>
+                                    <label >
+                                      <input type="checkbox" name="Ram" value="i3" onChange={handleCheckboxChange} checked={formData.subcategories.includes("i3")}/>
+                                      i3
+                                    </label>
+                                    <label >
+                                      <input type="checkbox" name="Ram" value="i4" onChange={handleCheckboxChange} checked={formData.subcategories.includes("i4")}/>
+                                      i4
+                                    </label>
+                                  </div>
+                                
+                                  
+                              
+                              </div>
+                              <div>
+                                <label className="block text-sm font-medium mb-1">Stock</label>
+                                <input
+                                  type="number"
+                                  name="stock"
+                                  value={formData.stock}
+                                  onChange={(e)=>setFormData({...formData,stock:e.target.value})}
+                                  min="0"
+                                  className="w-full p-2 border rounded"
+                                  required
+                                />
+                              </div>
+                              
+                              <button 
+                                type="submit"
+                                className="block bg-gray-800 text-white rounded hover:bg-gray-900 "
+                                disabled={formData.stock <= 0}
+                              >Add Product
+                              </button>
                   </form>
 
         </div>
