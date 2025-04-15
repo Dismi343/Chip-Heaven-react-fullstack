@@ -160,9 +160,8 @@ const HomePage=()=>{
                     <div>
                       <label className="block text-sm font-medium mb-1">Product Image</label>
                       <input
-                        type="file"
+                        type="text"
                         name="img"
-                        accept=".jpeg,.jpg,.png"
                         id="img"
                         onChange={(e)=>setFormData({...formData,img:e.target.value})}
                         className="w-full p-2 border rounded"
