@@ -18,7 +18,7 @@ const Home=()=>{
         const textVisible=setTimeout(()=>{
             setTextvisible(true);
             return textVisible;
-        },);
+        },100);
     },[]);
 
     useEffect(()=>{
@@ -41,13 +41,6 @@ const Home=()=>{
     },[lastScrollPos]);
 
 
- 
-
-    // function scroll(){
-    //     console.log(window.pageYOffset);    
-    // }
-
-    scroll();
     return (
         <>
      
