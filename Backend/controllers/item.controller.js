@@ -1,43 +1,42 @@
 import mongoose from "mongoose";
 import Item from "../models/item.model.js";
+import {v4} from "uuid";
 
 export const postitem= async (req,res)=>{
-    const item =req.body;
-    const file=req.files;
-   // const fileName="image/"+v4();
- if(!item.itemid || !item.title||!item.price || !item.discription || !item.category ||!item.stock || !item.img || !item.subcategories){
-     return res.status(400).json({success:false, message:"please provide all feilds"})
- }
+        const item =req.body;
+     
+    if(!item.itemid || !item.title||!item.price || !item.discription || !item.category ||!item.stock || !item.img || !item.subcategories){
+        return res.status(400).json({success:false, message:"please provide all feilds"})
+    }
 
- const newItem= new Item(item);
- try{
-     await newItem.save();
-     res.status(201).json({success:true, data:newItem});
- }
- catch(error){
-     console.log("Error in creattin item", error.message);
-     res.status(500).json({success:false ,message:"server error"});
- }
+
+
+    const newItem= new Item(item);
+    try{
+        await newItem.save();
+        res.status(201).json({success:true, data:newItem});
+    }
+    catch(error){
+        console.log("Error in creattin item", error.message);
+        res.status(500).json({success:false ,message:"server error"});
+    }
  };
 
 
- export const getitem= async (req,res)=>{
+export const getitem= async (req,res)=>{
      try {
       const items=await Item.find({});
       res.status(200).json({success:true,data:items});
       }catch(error){
           res.status(500).json({success:false,message:error});
-      }
+      } 
   
-  };
+};
 
-  export const putitem=async(req,res)=>{
+export const putitem=async(req,res)=>{
     const {id}=req.params;
     const item=req.body;
-    const {file}=req.files;
-
-
-
+   
 
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({success:false, message:"invalide data"});
@@ -49,9 +48,9 @@ export const postitem= async (req,res)=>{
     }catch(error){
         res.status(500).json({success:false,message:error});
     }
-    };
+};
 
-    export const deleteitem=async(req,res)=>{
+export const deleteitem=async(req,res)=>{
      
              const{id}= req.params;
              if(!mongoose.Types.ObjectId.isValid(id)){
@@ -60,9 +59,35 @@ export const postitem= async (req,res)=>{
              try{
                  await Item.findByIdAndDelete(id);
                  res.status(200).json({success:true, message:"Product deleted succefully"});
+
+
+                 //--s3 bucket--//
+
+             if(data.status!= 204){
+                return res.status(400).json({
+                    success:false,
+                    message:"Failed to delete"
+                })
+             }
+             const deletedItem = await Item.findByIdAndDelete(id,{
+                new:true,
+             });
+             if(!deletedItem){
+                return res.status(400).json({
+                    success:false,
+                    message:"Failed to delete"
+                })
+             }
+
+             return res.status(200).json({
+                    success:true,
+                    data:deletedItem
+             })
                
              }
              catch(error){
                  res.status(500).json({success:false,message: error});
              }
-     };
+
+             
+};

@@ -91,7 +91,7 @@ const HomePage=()=>{
                     <tr key={items._id} className="border-b hover:bg-gray-50 ">
                       <td className="p-2">{items.itemid}</td>
                       <td className="p-2">{items.title}</td>
-                      <td className="p-2"><img src={items.img} alt={items.title}/></td>
+                      <td className="p-2 w-[200px] h-[200px]"><img src={items.img} alt={items.title}/></td>
                       <td className="p-2">{items.category}</td>
                       <td className="p-2 text-right">
                         ${items.price.toLocaleString('en-US', { minimumFractionDigits: 2 })}
@@ -160,9 +160,8 @@ const HomePage=()=>{
                     <div>
                       <label className="block text-sm font-medium mb-1">Product Image</label>
                       <input
-                        type="file"
+                        type="text"
                         name="img"
-                        accept=".jpeg,.jpg,.png"
                         id="img"
                         onChange={(e)=>setFormData({...formData,img:e.target.value})}
                         className="w-full p-2 border rounded"
