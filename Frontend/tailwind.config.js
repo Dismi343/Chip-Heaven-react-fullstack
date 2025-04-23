@@ -12,6 +12,10 @@ export default {
         'logo' : "url('./assets/images/logo.svg')",
         'bgimg2': "url('./assets/images/bgimg2.png')",
       },
+      colors:{
+        primary: '#2195A1',
+       
+      }
    
     },
     fontFamily: {
@@ -29,6 +33,7 @@ export default {
         '100%': { transform: 'translateX(-50%)' },
       },
     },
+   
   
   },
   plugins: [],

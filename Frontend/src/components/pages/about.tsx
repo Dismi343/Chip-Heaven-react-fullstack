@@ -57,7 +57,7 @@ function About(){
       
         <div className="flex ">
        
-        <div className={` w-full h-96 bg-bgimg2 w-full bg-cover bg-center bg-no-repeat items-center justify-center flex fixed top-0 left-0 
+        <div className={` w-full md:h-96 h-60 bg-bgimg2 w-full bg-cover bg-center bg-no-repeat items-center justify-center flex fixed top-0 left-0 
                 transition-transform duration-500  shadow-lg z-30 ${isVisible ? "transform translate-y-0" : "transform -translate-y-full" } `}>
                    <div className=" bg-black bg-opacity-50"></div>
                     <div className="flex flex-col items-center justify-center">  
@@ -68,7 +68,7 @@ function About(){
             </div>
             
         </div>
-        <div className="h-96">
+        <div className="md:h-96 h-60">
 
         </div>
 
@@ -88,14 +88,14 @@ function About(){
                     key={image.id}
                     data-id={image.id}
                     className={`
-                        flex-shrink-0  w-96 overflow-hidden rounded-lg shadow-lg
+                        flex-shrink-0  md:w-96 w-48  overflow-hidden rounded-lg shadow-lg
                     `}
                     >
                     <div className="overflow-hidden rounded-lg shadow-lg">
                         <img 
                         src={image.src} 
                         alt={image.alt} 
-                        className="h-[300px] w-full object-cover transition-transform duration-300 hover:scale-110"
+                        className="md:h-[300px] w-full h-48  object-cover transition-transform duration-300 hover:scale-110"
                         loading="lazy"
                         />
               </div>
@@ -106,10 +106,10 @@ function About(){
             </div> 
       </div>
                
-      <span className={ `mt-40 flex justify-center transition-transform duration-1000  ${ismove ? "transform -translate-x-full" : " transform translate-x-0" } `}>
-            <PhoneInTalkOutlinedIcon fontSize="large"/> <a className="text-2xl flex items-center pl-10 font-semibold  " href="tel:+94767492276">+94 76 749 2276</a>
+      <span className={ `mt-20 flex justify-center transition-transform duration-1000  ${ismove ? "transform -translate-x-full" : " transform translate-x-0" } `}>
+            <PhoneInTalkOutlinedIcon fontSize="large"/> <a className="md:text-2xl text:xl flex items-center pl-10 font-semibold  " href="tel:+94767492276">+94 76 749 2276</a>
            </span>
-           <p className={ `mt-10 pl-10 flex justify-center px-3 transition-transform duration-1000 delay-150 ${ismove ? "transform -translate-x-full " : " transform translate-x-0  " } `} > Dewala rd, Mahara-Nugegoda, Kadawatha, Sri Lanka</p>
+           <p className={ `mt-10 pl-10 flex justify-center px-3 transition-transform duration-1000 delay-150  md:text-lg text-sm ${ismove ? "transform -translate-x-full " : " transform translate-x-0  " } `} > Dewala rd, Mahara-Nugegoda, Kadawatha, Sri Lanka</p>
             <div className="w-full h-[4000px]">
             </div>
         </>
