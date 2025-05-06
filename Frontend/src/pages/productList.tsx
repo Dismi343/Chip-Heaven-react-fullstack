@@ -48,14 +48,20 @@ const ProductList: React.FC = () => {
         
     
         useEffect(()=>{
+          
             const handleMouseMove=(event:MouseEvent)=>{
+
+              
+                    if(event.clientX<300 && event.clientY>100 ){
+                        setIsOpen(true);
+                    }
+                  
+                    else {
+                        setIsOpen(false);
+                    }
+                
              
-                if(event.clientX<300 && event.clientY>100){
-                    setIsOpen(true);
-                }
-                else {
-                    setIsOpen(false);
-                }
+               
             };
                 document.addEventListener("mousemove",handleMouseMove);
             return()=>{

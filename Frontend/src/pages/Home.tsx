@@ -62,9 +62,8 @@ const Home=()=>{
              
         </div>
         {/* <div className="w-full h-[400px]"></div> */}
-        
-       <div className="relative z-20 bg-white pb-10">
-       <div className={`w-full md:pt-[450px] pt-[300px] `}>
+       
+        <div className={`relative z-20 w-full md:pt-[500px] pt-[300px] bg-white `}>
                 <div className={`justify-center w-full h-full mt-10 grid grid-rows-1 `}  >
                     <div className={`flex justify-center items-center flex-col mb-20 pl-10  transform transition-all duration-1000 delay-300 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                         <p className="font-sans md:font-medium  subpixel-antialiased md:text-xl text-sm tracking-normal mb-5 flex justify-center items-center">
@@ -74,18 +73,24 @@ const Home=()=>{
                         Find the latest computer accessories, and repair services all in one place.
                         </p>
                     </div>
-                    <div className=" sticky z-30 w-full h-full bg-white">
-                        
-                    <ProductList /> 
-                    </div>
-               
+                    
+
                 </div>
-                <hr className="mt-20 border border-gray-400"/>
+                
             </div>
-            <span className={ `mt-40 flex justify-center transition-transform duration-1000  ${ismove ? "transform -translate-x-full" : " transform translate-x-0" } `}>
+            <div className=" sticky z-30 w-full h-full bg-white pt-20 pb-10 px-40 flex justify-center">    
+                <ProductList /> 
+               
+            </div> 
+          
+       <div className="relative z-20 bg-white pb-10">
+       
+            <span className={ `pt-40 flex justify-center transition-transform duration-1000  ${ismove ? "transform -translate-x-full" : " transform translate-x-0" } `}>
+                
             <PhoneInTalkOutlinedIcon fontSize="large"/> <a className="md:text-2xl text-xl flex items-center pl-10 font-semibold  " href="tel:+94767492276">+94 76 749 2276</a>
            </span>
            <p className={ `mt-10 pl-10 flex justify-center px-3 transition-transform duration-1000 delay-150 md:text-lg text-sm ${ismove ? "transform -translate-x-full " : " transform translate-x-0  " } `} > Dewala rd, Mahara-Nugegoda, Kadawatha, Sri Lanka</p>
+           <hr className="relative z-30 mt-20 border border-gray-400"/>
             <div className="mt-40 md:w-full md:h-96 flex  gap-10  flex-col items-center lg:flex-row lg:justify-around justify-center pb-10 ">
                     <div className="w-full h-48 lg:w-96 md:h-80 bg-primary shadow-lg shadow-primary ">
                     <div className="lg:mt-8 mt-4 flex justify-center ">
