@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import {fetchItems} from "../components/Utils/api";
 import { Item } from "../components/Data/ProductType";
+import { fetchItems } from "../components/Utils/api";
 
 //import { ListItem } from "@mui/material";
 
@@ -14,8 +14,8 @@ const ProductList: React.FC = () => {
         const [selectedCategory,setSelectedCategory]=useState<string | null>(null);
         const categories= Array.from(new Set(items.map(item => item.category)));
         const [textVisible,setTextvisible]=useState(false);
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const [error, setError] = useState<string | null>(null);
+       
+        const [, setError] = useState<string | null>(null);
   
 
         useEffect(()=>{
@@ -23,7 +23,12 @@ const ProductList: React.FC = () => {
                 try{
                    
                     const data = await fetchItems();
-                    setItems(Array.isArray(data) ? data : Object.values(data.data));
+                    
+                    const processedItems = Array.isArray(data)
+                    ? data.map(item => item.data || item) 
+                    : Object.values(data.data || data); 
+    
+                setItems(processedItems);
                   // console.log(items);
                   
                 } catch (error){ 
