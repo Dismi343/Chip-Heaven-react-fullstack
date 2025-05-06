@@ -1,4 +1,5 @@
 export interface Item{
+    data: Item;
     //_id: Key | null | undefined;
     itemid:number,
     title:string,

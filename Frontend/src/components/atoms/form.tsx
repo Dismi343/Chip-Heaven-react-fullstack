@@ -17,11 +17,11 @@ function Form_component(){
           '79xE9zxsdqJW6N5Kk'      // Replace with your EmailJS public key
         )
         .then(
-          (result) => {
+          (result: { text: unknown; }) => {
             console.log(result.text);
             alert("Message sent successfully!");
           },
-          (error) => {
+          (error: { text: unknown; }) => {
             console.log(error.text);
             alert("Failed to send message.");
           }
@@ -31,7 +31,7 @@ return(
 <>
 <ScrollImage></ScrollImage>
 
-<div className="relative z-10 lg:pt-40 ">
+<div className="relative z-10 lg:pt-40">
        
     <div className="w-full lg:h-[80dvh] md:h-[50dvh] h-[70dvh] lg:flex  bg-primary  ">
         

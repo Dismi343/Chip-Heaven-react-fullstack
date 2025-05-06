@@ -25,10 +25,12 @@ const ProductList: React.FC = () => {
                     const data = await fetchItems();
                     
                     const processedItems = Array.isArray(data)
-                    ? data.map(item => item.data || item) 
-                    : Object.values(data.data || data); 
+                    ? data.map((item: { data?: Item }) => item.data || item) 
+                    : Object.values((data as { data?: Record<string, Item> }).data || data); 
     
-                setItems(processedItems);
+                setItems(processedItems.filter((item): item is Item => 
+                    item && 'itemid' in item && 'title' in item && 'price' in item && 'discription' in item
+                ));
                   // console.log(items);
                   
                 } catch (error){ 
