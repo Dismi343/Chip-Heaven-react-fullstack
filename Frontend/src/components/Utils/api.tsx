@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Item } from '../Data/ProductType';
 
-const API_BASE_URL = 'https://chip-heaven-react-fullstack-2.onrender.com';
+const API_BASE_URL = 'https://chip-heaven-react-fullstack-2.onrender.com/api'; 
 
 export const fetchItems = async (): Promise<Item[]> => {
     const response = await axios.get<Item[]>(`${API_BASE_URL}/items`);
