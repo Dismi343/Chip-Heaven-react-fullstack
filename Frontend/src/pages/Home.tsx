@@ -47,11 +47,11 @@ const Home=()=>{
      
 
            
-        <div className="flex ">
+        <div className="flex  ">
         
-            <div className={` w-full md:h-96 h-60 bg-fixed bg-bgimg w-full  bg-cover bg-center bg-no-repeat items-center justify-center flex fixed top-0 left-0 
+            <div className={` w-full md:h-[45vh] h-[40vh] bg-fixed bg-bgimg w-full  bg-cover bg-center bg-no-repeat items-center justify-center flex fixed top-0 left-0 
                 transition-transform duration-500 z-30  ${isVisible ? "transform translate-y-0 " : "transform -translate-y-full" }  `}>
-               <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+               <div className="absolute inset-0 bg-black bg-opacity-40"></div>
                 <div className="flex flex-col items-center justify-center"> 
                 <div className={` md:w-[400px] md:h-[400px] w-[200px] h-[200px] bg-logo transform transition-all duration-1000 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}></div>  
                 <NavBar   /> 
@@ -62,8 +62,9 @@ const Home=()=>{
              
         </div>
         {/* <div className="w-full h-[400px]"></div> */}
-       
-            <div className={`w-full md:mt-[450px] mt-[300px] `}>
+        
+       <div className="relative z-20 bg-white pb-10">
+       <div className={`w-full md:pt-[450px] pt-[300px] `}>
                 <div className={`justify-center w-full h-full mt-10 grid grid-rows-1 `}  >
                     <div className={`flex justify-center items-center flex-col mb-20 pl-10  transform transition-all duration-1000 delay-300 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                         <p className="font-sans md:font-medium  subpixel-antialiased md:text-xl text-sm tracking-normal mb-5 flex justify-center items-center">
@@ -73,7 +74,8 @@ const Home=()=>{
                         Find the latest computer accessories, and repair services all in one place.
                         </p>
                     </div>
-                    <div className=" w-full h-full ">
+                    <div className=" sticky z-30 w-full h-full bg-white">
+                        
                     <ProductList /> 
                     </div>
                
@@ -84,7 +86,7 @@ const Home=()=>{
             <PhoneInTalkOutlinedIcon fontSize="large"/> <a className="md:text-2xl text-xl flex items-center pl-10 font-semibold  " href="tel:+94767492276">+94 76 749 2276</a>
            </span>
            <p className={ `mt-10 pl-10 flex justify-center px-3 transition-transform duration-1000 delay-150 md:text-lg text-sm ${ismove ? "transform -translate-x-full " : " transform translate-x-0  " } `} > Dewala rd, Mahara-Nugegoda, Kadawatha, Sri Lanka</p>
-            <div className="mt-40 md:w-full md:h-96 flex  gap-10  flex-col items-center lg:flex-row lg:justify-around justify-center ">
+            <div className="mt-40 md:w-full md:h-96 flex  gap-10  flex-col items-center lg:flex-row lg:justify-around justify-center pb-10 ">
                     <div className="w-full h-48 lg:w-96 md:h-80 bg-primary shadow-lg shadow-primary ">
                     <div className="lg:mt-8 mt-4 flex justify-center ">
                     <img src={warranty} className="lg:w-20  lg:h-20 w-10 h-10   "/>
@@ -123,9 +125,15 @@ const Home=()=>{
 
                       
             </div>
-           <Form_component></Form_component>
+       </div>
+           
+           
+           
+           
 
-           <div className="h-96"></div>
+           
+           <Form_component></Form_component>
+       
         </>
     );
 };

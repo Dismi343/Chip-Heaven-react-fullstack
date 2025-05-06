@@ -52,9 +52,9 @@ function About(){
       
         <div className="flex ">
        
-        <div className={` w-full md:h-96 h-60 bg-bgimg2 w-full bg-cover bg-center bg-no-repeat items-center justify-center flex fixed top-0 left-0 
+        <div className={` w-full md:h-96 h-[40vh] bg-bgimg2 w-full bg-cover bg-center bg-no-repeat items-center justify-center flex fixed top-0 left-0 
                 transition-transform duration-500  shadow-lg z-30 ${isVisible ? "transform translate-y-0" : "transform -translate-y-full" } `}>
-                   <div className=" bg-black bg-opacity-50"></div>
+                   <div className=" absolute inset-0 bg-black bg-opacity-30"></div>
                     <div className="flex flex-col items-center justify-center">  
                 <div className={`md:w-[400px] md:h-[400px] w-[200px] h-[200px]  bg-logo transform transition-all duration-1000 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}></div>    
                 <NavBar  />

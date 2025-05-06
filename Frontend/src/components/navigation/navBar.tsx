@@ -16,7 +16,7 @@ function NavBar(){
         useEffect(()=>{
             const handleScroll=()=>{
                 const currentScroll=window.pageYOffset;
-                setBlack(currentScroll<150);
+                setBlack(currentScroll<100);
                 setLastScroll(currentScroll);
                 };
 
@@ -32,7 +32,7 @@ function NavBar(){
         <>
         
         {/* Desktop View */}
-         <nav className=" z-30 top-0 fixed left-0 w-full hidden md:block ">
+         <nav className=" z-20 top-0 fixed left-0 w-full hidden md:block ">
          
         <div className="w-100 h-20  font-serif flex flex-row justify-between items-center ">
         
