@@ -1,13 +1,12 @@
 
 import { useState,useEffect } from "react";
-import NavBar from "../navigation/navBar";
+import NavBar from "../components/navigation/navBar";
 import ProductList from "./productList";
 import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
-import warranty from "../../assets/images/icons/guarantee.png";
-import home from "../../assets/images/icons/home-button.png";
-import communication from "../../assets/images/icons/Communication.png";
-
-
+import warranty from "../assets/images/icons/guarantee.png";
+import home from "../assets/images/icons/home-button.png";
+import communication from "../assets/images/icons/Communication.png";
+import Form_component from "../components/atoms/form";
 
 const Home=()=>{
     const [isVisible,setIsVisible] = useState(true);    
@@ -112,7 +111,7 @@ const Home=()=>{
                         </p> </div>
 
                         <div className=" w-full h-48 lg:w-96 md:h-80 bg-primary shadow-lg shadow-primary ">
-                    <div className="lg:mt-8 mt-4 flex justify-center  ">
+                    <div className="lg:mt-8 mt-4 flex justify-center   ">
                     <img src={communication} className="lg:w-20 lg:h-20 w-10 h-10   "/>
                     </div>
                     <p className="text-white font-bold flex justify-center pt-4  text-md lg:text-2xl ">
@@ -124,25 +123,9 @@ const Home=()=>{
 
                       
             </div>
-            <div className="w-full h-[50vh] flex mt-20 bg-morelighter">
-                <div className="lg:flex-1 w-2/3 h-full mt-20">
-                <form action="" className="flex flex-col ">
-                <input type="text" name="username" id="username" className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="janesmith"/>
-               
-             </form>
-                </div>
-                <div className="lg:flex-2 w-1/3 bg-white  h-full flex justify-center items-center">
-                        <p>fgdf</p>
-                </div>
-           
-            </div>
+           <Form_component></Form_component>
 
-          
-                  
-            <div className="w-full h-[4000px]">
-            </div>
-
-           
+           <div className="h-96"></div>
         </>
     );
 };

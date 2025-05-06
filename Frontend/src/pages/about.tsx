@@ -1,10 +1,10 @@
 import { useState,useEffect } from "react";
-import NavBar from "../navigation/navBar";
-import products1 from "../../assets/images/aboutimg/products1.jpg";
-import products2 from "../../assets/images/aboutimg/products2.jpg"; 
-import products3 from "../../assets/images/aboutimg/products3.jpg";
-import products4 from "../../assets/images/aboutimg/products4.jpg";
-import products5 from "../../assets/images/aboutimg/products5.jpg";
+import NavBar from "../components/navigation/navBar";
+import products1 from "../assets/images/aboutimg/products1.jpg";
+import products2 from "../assets/images/aboutimg/products2.jpg"; 
+import products3 from "../assets/images/aboutimg/products3.jpg";
+import products4 from "../assets/images/aboutimg/products4.jpg";
+import products5 from "../assets/images/aboutimg/products5.jpg";
 import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
 
 

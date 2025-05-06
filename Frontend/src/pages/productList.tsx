@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import {fetchItems} from "../Utils/api";
-import { Item } from "../Data/ProductType";
+import {fetchItems} from "../components/Utils/api";
+import { Item } from "../components/Data/ProductType";
 
 //import { ListItem } from "@mui/material";
 

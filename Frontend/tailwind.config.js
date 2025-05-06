@@ -11,12 +11,15 @@ export default {
         'bgimg': "url('./assets/images/bg3.jpg')",
         'logo' : "url('./assets/images/logo.svg')",
         'bgimg2': "url('./assets/images/bgimg2.png')",
+       'form_img':"url(./assets/images/form_photo.jpg)"
       },
       colors:{
         darker:"#164863",
         primary: '#427D9D',
         lighter:"#9BBEC8",
-        morelighter:"#DDF2FD"
+        grayish:"#cbd5e1",
+        morelighter:"#DDF2FD",
+    
        
       }
    
