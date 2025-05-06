@@ -93,7 +93,7 @@ const ProductList: React.FC = () => {
     <div className= {`hidden md:block fixed top-0 left-0 inset-0 bg-neutral-800 opacity-50 md:w-96 transition-all duration-500 ease-in-out transform z-40  ${isOpen ? 'translate-x-0' : '-translate-x-full delay-500 '}`}>
     </div>
       
-      <div className={`hidden md:block fixed top-0 left-0 h-full  shadow-lg transition-transform duration-500 delay-300 ease-in-out transform 
+      <div className={`hidden md:block fixed top-0 left-0 h-full  transition-transform duration-500 delay-300 ease-in-out transform 
        ${isOpen ? 'translate-x-0' : '-translate-x-full'} w-96 z-40`}>
         
        
@@ -102,7 +102,7 @@ const ProductList: React.FC = () => {
          
          
            <div
-              className={`p-4 mt-20 cursor-pointer rounded hover:bg-cyan-900 mb-1 text-white font-bold ${selectedCategory===null ? 'bg-cyan-900 text-white':''} tranform transition-all ease-in-out ${isOpen ? '  opacity-100   ' : ' opacity-0  '}`}
+              className={`p-4 mt-20 cursor-pointer rounded hover:bg-darker mb-1 text-white font-bold ${selectedCategory===null ? 'bg-darker text-white':''} tranform transition-all ease-in-out ${isOpen ? '  opacity-100   ' : ' opacity-0  '}`}
              
               onClick={() => setSelectedCategory(null)}                                                 
               >
@@ -113,7 +113,7 @@ const ProductList: React.FC = () => {
                 <div
                 key={category}
                 className={`p-4 cursor-pointer rounded text-white tranform transition-all  ease-in-out  ${isOpen ? '  opacity-100  ' : ' opacity-0  '}
-                    ${selectedCategory === category ? 'bg-cyan-900  text-white':''} `}
+                    ${selectedCategory === category ? 'bg-darker  text-white':''} `}
                     
                 onClick={()=>setSelectedCategory(category)}
                 >

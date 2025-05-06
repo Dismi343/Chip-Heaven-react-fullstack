@@ -5,6 +5,7 @@ import ProductList from "./productList";
 import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
 import warranty from "../../assets/images/icons/guarantee.png";
 import home from "../../assets/images/icons/home-button.png";
+import communication from "../../assets/images/icons/Communication.png";
 
 
 
@@ -85,7 +86,7 @@ const Home=()=>{
            </span>
            <p className={ `mt-10 pl-10 flex justify-center px-3 transition-transform duration-1000 delay-150 md:text-lg text-sm ${ismove ? "transform -translate-x-full " : " transform translate-x-0  " } `} > Dewala rd, Mahara-Nugegoda, Kadawatha, Sri Lanka</p>
             <div className="mt-40 md:w-full md:h-96 flex  gap-10  flex-col items-center lg:flex-row lg:justify-around justify-center ">
-                    <div className="w-full h-48 lg:w-96 md:h-80 bg-primary ">
+                    <div className="w-full h-48 lg:w-96 md:h-80 bg-primary shadow-lg shadow-primary ">
                     <div className="lg:mt-8 mt-4 flex justify-center ">
                     <img src={warranty} className="lg:w-20  lg:h-20 w-10 h-10   "/>
                     </div>
@@ -99,8 +100,7 @@ const Home=()=>{
                         
                         
                     </div>
-                    <img  />
-                    <div className=" w-full h-48 lg:w-96 md:h-80 bg-primary ">
+                    <div className=" w-full h-48 lg:w-96 md:h-80 bg-primary shadow-lg shadow-primary ">
                     <div className="lg:mt-8 mt-4 flex justify-center ">
                     <img src={home} className="lg:w-20 lg:h-20 w-10 h-10   "/>
                     </div>
@@ -110,8 +110,35 @@ const Home=()=>{
                         <p className="text-white text-md flex justify-center pt-2 lg:pt-8 text-center px-4"> 
                         we offer to deliver to meet your requirements straight to where you live within Sri Lankan Borders
                         </p> </div>
-                  
+
+                        <div className=" w-full h-48 lg:w-96 md:h-80 bg-primary shadow-lg shadow-primary ">
+                    <div className="lg:mt-8 mt-4 flex justify-center  ">
+                    <img src={communication} className="lg:w-20 lg:h-20 w-10 h-10   "/>
+                    </div>
+                    <p className="text-white font-bold flex justify-center pt-4  text-md lg:text-2xl ">
+                            Easy Communication
+                        </p>    
+                        <p className="text-white text-md flex justify-center pt-2 lg:pt-8 text-center px-4"> 
+                        Call us or Email us, we are here to help you for 24/7
+                        </p> </div>
+
+                      
             </div>
+            <div className="w-full h-[50vh] flex mt-20 bg-morelighter">
+                <div className="lg:flex-1 w-2/3 h-full mt-20">
+                <form action="" className="flex flex-col ">
+                <input type="text" name="username" id="username" className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="janesmith"/>
+               
+             </form>
+                </div>
+                <div className="lg:flex-2 w-1/3 bg-white  h-full flex justify-center items-center">
+                        <p>fgdf</p>
+                </div>
+           
+            </div>
+
+          
+                  
             <div className="w-full h-[4000px]">
             </div>
 

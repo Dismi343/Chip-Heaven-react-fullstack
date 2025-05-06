@@ -13,7 +13,10 @@ export default {
         'bgimg2': "url('./assets/images/bgimg2.png')",
       },
       colors:{
-        primary: '#2195A1',
+        darker:"#164863",
+        primary: '#427D9D',
+        lighter:"#9BBEC8",
+        morelighter:"#DDF2FD"
        
       }
    

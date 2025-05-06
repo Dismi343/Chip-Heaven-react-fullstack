@@ -7,11 +7,6 @@ import products4 from "../../assets/images/aboutimg/products4.jpg";
 import products5 from "../../assets/images/aboutimg/products5.jpg";
 import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
 
-// interface ImageItem{
-//     id:number;
-//     src:string;
-//     alt:string;
-// }
 
 function About(){
         const [isVisible,setIsVisible] = useState(true);
@@ -28,7 +23,7 @@ function About(){
         ];
       
 
-        const duplicatedImages=[...images,...images]; // Duplicate the images array
+        const duplicatedImages=[...images,...images]; 
         
 
         useEffect(()=>{       
