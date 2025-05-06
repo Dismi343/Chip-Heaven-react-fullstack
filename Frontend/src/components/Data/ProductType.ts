@@ -1,4 +1,5 @@
 export interface Item{
+    
     //_id: Key | null | undefined;
     itemid:number,
     title:string,
@@ -8,3 +9,4 @@ export interface Item{
     img:string,
     subcategories?:string[]
 }
+

@@ -25,7 +25,8 @@ const ProductList: React.FC = () => {
                     const data = await fetchItems();
                     
                     const processedItems = Array.isArray(data)
-                    ? data.map((item: { data?: Item }) => item.data || item) 
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    ? data.map((item: any) => item.data || item) 
                     : Object.values((data as { data?: Record<string, Item> }).data || data); 
     
                 setItems(processedItems.filter((item): item is Item => 
