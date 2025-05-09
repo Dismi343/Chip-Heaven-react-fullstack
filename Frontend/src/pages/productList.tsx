@@ -26,7 +26,7 @@ const ProductList: React.FC = () => {
                     
                     const processedItems = Array.isArray(data)
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    ? data.map((item: any) => item.data._id || item) 
+                    ? data.map((item: any) => item.data || item) 
                     : Object.values((data as { data?: Record<string, Item> }).data || data); 
                          console.log(data);
                 setItems(processedItems.filter((item): item is Item => 
