@@ -2,7 +2,6 @@
 import { useState,useEffect } from "react";
 import NavBar from "../components/navigation/navBar";
 import ProductList from "./productList";
-import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
 import warranty from "../assets/images/icons/guarantee.png";
 import home from "../assets/images/icons/home-button.png";
 import communication from "../assets/images/icons/Communication.png";
@@ -10,7 +9,7 @@ import Form_component from "../components/atoms/form";
 
 const Home=()=>{
     const [isVisible,setIsVisible] = useState(true);    
-    const[ismove,setIsMove]=useState(true);
+   
     const [lastScrollPos,setLastScrollPos]= useState(0);
     const [textVisible,setTextvisible]=useState(false);
   
@@ -29,7 +28,6 @@ const Home=()=>{
             setIsVisible(currentScrollPos<=100);
            
 
-            setIsMove(currentScrollPos<=700);
            
 
             setLastScrollPos(currentScrollPos);
@@ -85,12 +83,8 @@ const Home=()=>{
           
        <div className="relative z-20 bg-white pb-10">
        
-            <span className={ `pt-40 flex justify-center transition-transform duration-1000  ${ismove ? "transform -translate-x-full" : " transform translate-x-0" } `}>
-                
-            <PhoneInTalkOutlinedIcon fontSize="large"/> <a className="md:text-2xl text-xl flex items-center pl-10 font-semibold  " href="tel:+94767492276">+94 76 749 2276</a>
-           </span>
-           <p className={ `mt-10 pl-10 flex justify-center px-3 transition-transform duration-1000 delay-150 md:text-lg text-sm ${ismove ? "transform -translate-x-full " : " transform translate-x-0  " } `} > Dewala rd, Mahara-Nugegoda, Kadawatha, Sri Lanka</p>
-           <hr className="relative z-30 mt-20 border border-gray-400"/>
+            
+           <hr className="relative z-30  border border-gray-400"/>
             <div className="mt-40 md:w-full md:h-96 flex  gap-10  flex-col items-center lg:flex-row lg:justify-around justify-center pb-10 ">
                     <div className="w-full h-48 lg:w-96 md:h-80 bg-primary shadow-lg shadow-primary ">
                     <div className="lg:mt-8 mt-4 flex justify-center ">

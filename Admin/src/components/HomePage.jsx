@@ -186,6 +186,7 @@ const HomePage=()=>{
                         type="text"
                         name="img"
                         id="img"
+                        value={formData.img}
                         onChange={(e)=>setFormData({...formData,img:e.target.value})}
                         className="w-full p-2 border rounded"
                         required
