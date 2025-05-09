@@ -50,44 +50,33 @@ export const putitem=async(req,res)=>{
     }
 };
 
-export const deleteitem=async(req,res)=>{
-     
-             const{id}= req.params;
-             if(!mongoose.Types.ObjectId.isValid(id)){
-                return res.status(404).json({success:false, message:"Item not available"});
-            }
-             try{
-                 await Item.findByIdAndDelete(id);
-                 res.status(200).json({success:true, message:"Product deleted succefully"});
+export const deleteitem = async (req, res) => {
+  const { id } = req.params;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ success: false, message: "Invalid item ID" });
+  }
 
-                 //--s3 bucket--//
+  try {
+    // Delete from S3 first (if needed)
+    // Example placeholder: await deleteFromS3(...);
+    // if (s3DeleteFailed) return res.status(400).json(...);
 
-             if(data.status!= 204){
-                return res.status(400).json({
-                    success:false,
-                    message:"Failed to delete"
-                })
-             }
-             const deletedItem = await Item.findByIdAndDelete(id,{
-                new:true,
-             });
-             if(!deletedItem){
-                return res.status(400).json({
-                    success:false,
-                    message:"Failed to delete"
-                })
-             }
+    const deletedItem = await Item.findByIdAndDelete(id);
+    
+    if (!deletedItem) {
+      return res.status(404).json({ success: false, message: "Item not found" });
+    }
 
-             return res.status(200).json({
-                    success:true,
-                    data:deletedItem
-             })
-               
-             }
-             catch(error){
-                 res.status(500).json({success:false,message: error});
-             }
+    // Success
+    return res.status(200).json({
+      success: true,
+      message: "Item deleted successfully",
+      data: deletedItem,
+    });
 
-             
+  } catch (error) {
+    console.error("Error deleting item:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
 };

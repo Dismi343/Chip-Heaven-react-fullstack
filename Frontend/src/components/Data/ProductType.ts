@@ -1,6 +1,6 @@
 export interface Item{
     
-    //_id: Key | null | undefined;
+    _id:string;
     itemid:number,
     title:string,
     price:number,

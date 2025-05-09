@@ -26,13 +26,13 @@ const ProductList: React.FC = () => {
                     
                     const processedItems = Array.isArray(data)
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    ? data.map((item: any) => item.data || item) 
+                    ? data.map((item: any) => item.data._id || item) 
                     : Object.values((data as { data?: Record<string, Item> }).data || data); 
-    
+                         console.log(data);
                 setItems(processedItems.filter((item): item is Item => 
                     item && 'itemid' in item && 'title' in item && 'price' in item && 'discription' in item
                 ));
-                  // console.log(items);
+                  
                   
                 } catch (error){ 
                     setError("Failed to fetch data");
@@ -122,7 +122,7 @@ const ProductList: React.FC = () => {
 
             <div className={`relative z-20 flex justify-center grid sm:grid-cols-2 lg:grid-cols-3 grid-flow-row gap-20 bg-white transform  duration-1000 delay-500 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}>
                 {filteredProducts.map((product) =>(
-                    <div key={product.itemid} className=" container  font-sans1 gap-3 border border-solid rounded-2xl p-2 lg:w-80 h-96 w-60 flex justify-center items-center flex-col shadow-xl  hover:shadow-2xl hover:scale-[1.02] transition-all duration-300  ">
+                    <div key={product._id} className=" container  font-sans1 gap-3 border border-solid rounded-2xl p-2 lg:w-80 h-96 w-60 flex justify-center items-center flex-col shadow-xl  hover:shadow-2xl hover:scale-[1.02] transition-all duration-300  ">
                     <span className="size-3/5 bg-white rounded-xl p-2">
                     <img src={product.img} alt={product.title} className="size-[100%] " loading="lazy"/>
                     </span>

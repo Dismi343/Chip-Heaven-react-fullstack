@@ -31,9 +31,9 @@ return(
 <>
 <ScrollImage></ScrollImage>
 
-<div className="relative z-10 lg:pt-40">
+<div className="relative z-10 lg:pt-20">
        
-    <div className="w-full lg:h-[80dvh] md:h-[50dvh] h-[70dvh] lg:flex  bg-primary  ">
+    <div className="w-full lg:h-[90vh]  h-[80vh] lg:flex  bg-primary  ">
         
                 <div className=" lg:w-2/3 h-full ">
                 <div>
@@ -56,7 +56,7 @@ return(
                 
                </div>
                <div className="w-full flex justify-center items-center   ">
-               <button type="submit" className=" lg:bg-morelighter text-darker rounded-lg py-4 shadow-lg shadow-darker lg:mt-10 px-20 bg-primary  ">
+               <button type="submit" className=" bg-morelighter text-darker rounded-lg py-4 shadow-lg shadow-darker  px-20   ">
                 Submit</button>
                </div>
               

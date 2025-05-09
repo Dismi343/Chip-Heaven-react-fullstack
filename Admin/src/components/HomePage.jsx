@@ -5,9 +5,6 @@ import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutl
 import  { useEffect, useState } from 'react';
 import logo from '../assets/logo.png';
 import { useItemStore } from '../store/item';
-//import ddr4 from '../assets/DDR3 4gb.jpeg';
-
-//import { set } from 'mongoose';
 
 
 const HomePage=()=>{
@@ -31,25 +28,51 @@ const HomePage=()=>{
           fetchItems();
     },[fetchItems]);
 
-    const deleteProduct = async (itemid) => {
-      const { success,message } = await deleItem(itemid);
+    const deleteProduct = async (_id) => {
+      const { success,message } = await deleItem(_id);
       if(!success){
          console.log("Error",message);
       }
      };
 
-   const handleproduct = async (itemid,updatedItem) => {
-      updateItem(itemid,updatedItem);
+   const handleproduct = async (_id,updatedItem) => {
+      updateItem(_id,updatedItem);
    };
  
 
-
+    let Dublicate = (data) => {
+    return items.some((item) => {
+      if (data == item.itemid) {
+        console.log("Duplicate found:", item.itemid, "==", data);
+        return true;
+      }
+      return false;
+      });
+    };
       const handleSubmit = async(e) => {
-      e.preventDefault();
+
+      e.preventDefault();  
+      try{
+       
+          if(Dublicate(formData.itemid)){
+        console.log("Error: Duplicate itemid");
+        alert("Item ID already exists. Please use a unique ID.");
+        return;
+      }else{
+        
       const { success, message } = await createItem(formData);
       console.log("Success",success);  
       console.log("Message",message);
-      setFormData({title:"",itemid:"",price:"",stock:"",category:"",img:"",discription:'',subcategories:[],ram:"",Stock:"",Ram:""})
+      setFormData({itemid:"",title:"",img:"",price:"",stock:"",category:"",discription:'',subcategories:[]})
+      }
+
+      }catch(error){
+        console.log("Error in handleSubmit",error.message);
+      }
+     
+
+
+     
 
       };
 
