@@ -11,10 +11,10 @@ function Form_component(){
   
       emailjs
         .sendForm(
-          'service_vzdmmf7',     // Replace with your EmailJS service ID
-          'template_di1snp4',    // Replace with your EmailJS template ID
+          'service_vzdmmf7',     //  EmailJS service ID
+          'template_di1snp4',    // EmailJS template ID
           form.current!,
-          '79xE9zxsdqJW6N5Kk'      // Replace with your EmailJS public key
+          '79xE9zxsdqJW6N5Kk'      // EmailJS public key
         )
         .then(
           (result: { text: unknown; }) => {

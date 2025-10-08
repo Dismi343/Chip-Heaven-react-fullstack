@@ -37,22 +37,22 @@ function NavBar(){
         <div className="w-100 h-20  font-serif flex flex-row justify-between items-center ">
         
         <span className={` flex justify-start  ps-20 gap-6 w-20 h-10  text-md ${isblack ? 'text-white':'text-black'}`}>
-               <Link to="https://www.facebook.com/profile.php?id=61558286803494" className='w-20 h-10 hover:text-cyan-900 transition duration-0 hover:duration-150 hover:text-2xl text-center'> <FacebookOutlinedIcon fontSize="large"/></Link> 
-                <Link to="/"  className='w-20 h-10 hover:text-cyan-900 transition duration-0 hover:duration-150 hover:text-2xl text-center  '> <InstagramIcon fontSize="large"/> </Link> 
+               <Link to="https://www.facebook.com/profile.php?id=61558286803494" className='w-20 h-10 hover:underline text-center'> <FacebookOutlinedIcon fontSize="large"/></Link> 
+                <Link to="/"  className='w-20 h-10  text-center hover:underline '> <InstagramIcon fontSize="large"/> </Link> 
                 
            </span>
-           <div className={` flex justify-end pe-20 gap-4 items-center text-xl ${isblack ? 'text-white':'text-black'} `}>
-            <Link to="/" className=" w-20 h-10  hover:text-2xl  hover:duration-150 hover:text-cyan-900  text-center" >Home</Link>
-            <Link to="/about" className="w-20  h-10 hover:text-2xl hover:duration-150 hover:text-cyan-900 text-center"> About</Link>
-            <Link to="/user" className="w-20  h-10 hover:text-2xl  hover:duration-150 hover:text-cyan-900 text-center"><AccountCircleIcon fontSize="large"/> </Link>
-            <Link to="" className="w-20  h-10 hover:text-2xl  hover:duration-150 hover:text-cyan-900 text-center"><AddShoppingCartIcon fontSize="large"/> </Link>
+           <div className={` flex  justify-end pe-20 gap-4 items-center text-xl ${isblack ? 'text-white':'text-black'} `}>
+            <Link to="/" className=" w-20 h-10 hover:underline text-center" >Home</Link>
+            <Link to="/about" className="w-20  h-10 hover:underline  text-center"> About</Link>
+            <Link to="/user" className="w-20  h-10 hover:underline  text-center"><AccountCircleIcon fontSize="large"/> </Link>
+            <Link to="" className="w-20  h-10 hover:underline text-center"><AddShoppingCartIcon fontSize="large"/> </Link>
            </div>       
         </div>
        
         </nav>
        
        {/* modile view */}
-        <nav className={`top-0 fixed left-0 w-full md:hidden  `}>
+        <nav className="top-0 fixed left-0 w-full md:hidden " >
         <div className="w-100 h-10 bg-tranparent font-serif flex flex-row justify-end items-center flex px-6 ">
         <button 
              onClick={ToggleMenu}

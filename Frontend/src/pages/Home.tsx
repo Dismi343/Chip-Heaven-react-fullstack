@@ -47,13 +47,13 @@ const Home=()=>{
            
         <div className="flex  ">
         
+                <NavBar   /> 
             <div className={` w-full md:h-[45vh] h-[40vh] bg-fixed bg-bgimg w-full  bg-cover bg-center bg-no-repeat items-center justify-center flex fixed top-0 left-0 
                 transition-transform duration-500 z-30  ${isVisible ? "transform translate-y-0 " : "transform -translate-y-full" }  `}>
                <div className="absolute inset-0 bg-black bg-opacity-40"></div>
                 <div className="flex flex-col items-center justify-center"> 
                 <div className={` md:w-[400px] md:h-[400px] w-[200px] h-[200px] bg-logo transform transition-all duration-1000 ${textVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} `}></div>  
-                <NavBar   /> 
-               
+                           
                 </div>  
                   
             </div>
